@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1440" />
+<title>The Eternal Glow Event · Eternal Wellness Medical Spa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600&family=Lato:wght@400;500&family=Marcellus&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --brand_primary: #926D5C;
+    --brand_primary_alt: #916C5B;
+    --taupe_medium: #D2C3B6;
+    --taupe_light: #E1D6CC;
+    --taupe_button: #E1D7CD;
+    --sand: #EDE9E4;
+    --warm_mist: #EDE9E5;
+    --charcoal: #464344;
+    --near_black: #101010;
+    --body_text: #444444;
+    --muted: #707070;
+    --black: #000000;
+    --white: #FFFFFF;
+    --border: #DADADA;
+    --terracotta: #D97962;
+    --scrim: rgba(0,0,0,0.6);
+
+    --ease_soft: cubic-bezier(0, 0.33, 0.07, 1.03);
+    --t_button: 0.3s;
+    --t_nav: 0.4s;
+    --t_fade: 0.5s;
+
+    --radius_sm: 8px;
+    --radius_md: 10px;
+    --radius_lg: 12px;
+    --radius_pill: 50px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Karla', sans-serif;
+    color: var(--body_text);
+    background: var(--warm_mist);
+    line-height: 1.8em;
+    width: 1440px;
+    margin: 0 auto;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4 { font-family: 'Marcellus', serif; font-weight: 400; color: var(--near_black); }
+
+  a { color: var(--brand_primary_alt); text-decoration: none; transition: color var(--t_nav) ease; }
+  a:hover { color: var(--brand_primary); }
+  img { display: block; max-width: 100%; }
+
+  /* ========== Ticker ========== */
+  .ticker {
+    background: var(--near_black);
+    color: var(--white);
+    height: 40px;
+    font-family: 'Karla', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ticker_slide {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    gap: 16px;
+    opacity: 0;
+    transition: opacity var(--t_fade) ease;
+  }
+  .ticker_slide.active { opacity: 1; }
+  .ticker_slide .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--taupe_medium); }
+  .ticker_slide strong { font-weight: 600; color: var(--taupe_light); letter-spacing: 3px; }
+
+  /* ========== Nav ========== */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(237,233,229,0.82);
+    backdrop-filter: saturate(1.8) blur(5px);
+    -webkit-backdrop-filter: saturate(1.8) blur(5px);
+    border-bottom: 1px solid rgba(146,109,92,0.18);
+  }
+  .nav_inner {
+    height: 140px;
+    padding: 0 72px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 40px;
+  }
+  .logo {
+    display: inline-flex;
+    align-items: center;
+  }
+  .logo img {
+    height: 96px;
+    width: auto;
+    display: block;
+  }
+  .nav_links {
+    display: flex; gap: 36px; list-style: none; justify-content: center;
+  }
+  .nav_links a {
+    font-family: 'Marcellus', serif;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--black);
+    transition: color var(--t_nav) ease;
+  }
+  .nav_right {
+    display: flex; justify-content: flex-end; align-items: center; gap: 24px;
+    font-family: 'Karla', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: 'Karla', sans-serif;
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--taupe_button);
+    border: 1px solid transparent;
+    border-radius: var(--radius_md);
+    padding: 14px 28px;
+    cursor: pointer;
+    transition:
+      background var(--t_button) ease,
+      border var(--t_button) ease,
+      box-shadow var(--t_button) ease,
+      transform 0.4s ease,
+      color var(--t_button) ease;
+  }
+  .btn:hover { background: var(--brand_primary); color: var(--white); box-shadow: 0 6px 18px rgba(146,109,92,0.25); transform: translateY(-1px); }
+  .btn.ghost { background: transparent; border: 1px solid var(--near_black); color: var(--near_black); }
+  .btn.ghost:hover { background: var(--near_black); color: var(--white); }
+  .btn.dark { background: var(--near_black); color: var(--white); }
+  .btn.dark:hover { background: var(--brand_primary); color: var(--white); }
+  .btn.pill { border-radius: var(--radius_pill); padding: 12px 28px; }
+  .btn .phone_ico {
+    width: 14px; height: 14px; margin-right: 10px;
+    display: inline-block; vertical-align: middle;
+  }
+
+  /* Reveal */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 1s var(--ease_soft), transform 1s var(--ease_soft); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ========== Hero ========== */
+  .hero {
+    padding: 64px 72px 72px;
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 60px;
+    align-items: center;
+    background: var(--warm_mist);
+    position: relative;
+  }
+  .hero_eye {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-family: 'Karla', sans-serif;
+    font-size: 11px; letter-spacing: 3.6px; text-transform: uppercase;
+    color: var(--brand_primary);
+  }
+  .hero_eye::before { content: ""; width: 44px; height: 1px; background: var(--brand_primary); }
+  .hero_title {
+    font-family: 'Marcellus', serif;
+    font-size: 104px;
+    line-height: 0.98;
+    letter-spacing: -0.5px;
+    color: var(--near_black);
+    margin-top: 24px;
+  }
+  .hero_title em { font-style: italic; color: var(--brand_primary); }
+  .hero_sub {
+    font-family: 'Lato', sans-serif;
+    font-size: 18px; line-height: 1.75;
+    color: var(--body_text);
+    max-width: 520px;
+    margin: 26px 0 32px;
+  }
+  .hero_meta {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 40px;
+    padding: 22px 0;
+    border-top: 1px solid rgba(146,109,92,0.25);
+    border-bottom: 1px solid rgba(146,109,92,0.25);
+    margin-bottom: 32px;
+    max-width: 640px;
+  }
+  .hero_meta .k {
+    font-family: 'Karla', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2.8px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .hero_meta .v {
+    font-family: 'Marcellus', serif;
+    font-size: 20px;
+    color: var(--near_black);
+    margin-top: 4px;
+  }
+  .hero_actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  /* Hero photo stack + KenBurns */
+  .hero_photo {
+    position: relative;
+    aspect-ratio: 4/5;
+    height: 700px;
+    border-radius: var(--radius_lg);
+    overflow: hidden;
+    box-shadow: rgba(0,0,0,0.28) 0 0 18px 0;
+    isolation: isolate;
+  }
+  .hero_photo .frame {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    opacity: 0;
+    transition: opacity var(--t_fade) ease;
+    animation: kenburns 9s var(--ease_soft) infinite alternate;
+  }
+  .hero_photo .frame.active { opacity: 1; }
+  @keyframes kenburns {
+    from { transform: scale(1.04); }
+    to   { transform: scale(1.10); }
+  }
+  .hero_photo .cap {
+    position: absolute;
+    right: 18px; bottom: 18px;
+    padding: 10px 14px;
+    background: rgba(16,16,16,0.55);
+    backdrop-filter: saturate(1.8) blur(5px);
+    -webkit-backdrop-filter: saturate(1.8) blur(5px);
+    color: var(--white);
+    font-family: 'Karla', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    border-radius: var(--radius_md);
+    border: 1px solid rgba(255,255,255,0.14);
+    z-index: 2;
+  }
+  .hero_photo .arrows {
+    position: absolute;
+    left: 18px; bottom: 18px;
+    display: flex; gap: 8px;
+    z-index: 2;
+  }
+  .hero_photo .arrows button {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    border: 1px solid rgba(255,255,255,0.4);
+    color: var(--white);
+    backdrop-filter: saturate(1.8) blur(5px);
+    -webkit-backdrop-filter: saturate(1.8) blur(5px);
+    cursor: pointer;
+    font-family: 'Marcellus', serif;
+    font-size: 14px;
+    transition: background var(--t_button) ease, color var(--t_button) ease, border var(--t_button) ease;
+  }
+  .hero_photo .arrows button:hover {
+    background: var(--white);
+    color: var(--near_black);
+    border-color: var(--white);
+  }
+
+  /* Marquee */
+  .marquee {
+    background: var(--brand_primary);
+    color: var(--white);
+    padding: 28px 0;
+    font-family: 'Marcellus', serif;
+    font-size: 36px;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    overflow: hidden;
+    position: relative;
+  }
+  .marquee_track {
+    display: flex; gap: 56px; white-space: nowrap;
+    animation: marquee 40s linear infinite;
+  }
+  .marquee_track span { opacity: 0.9; }
+  .marquee_track em { font-style: italic; color: var(--taupe_light); margin: 0 10px; }
+  .marquee_track .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--taupe_light); display: inline-block; align-self: center; }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ========== Section scaffolding ========== */
+  section { padding: 120px 72px; }
+  .eye {
+    font-family: 'Karla', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3.6px;
+    text-transform: uppercase;
+    color: var(--brand_primary);
+  }
+  .title {
+    font-size: 58px;
+    line-height: 1.1;
+    letter-spacing: 0.5px;
+    margin-top: 14px;
+    color: var(--near_black);
+  }
+  .title em { font-style: italic; color: var(--brand_primary); }
+  .lede {
+    font-family: 'Lato', sans-serif;
+    font-size: 17px; line-height: 1.8;
+    color: var(--body_text);
+    max-width: 620px;
+  }
+
+  /* ========== Admission (first) ========== */
+  .admission {
+    background: var(--white);
+  }
+  .admission_wrap {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .admission .eye { color: var(--brand_primary); }
+  .admission_pass {
+    position: relative;
+    background: linear-gradient(135deg, var(--sand) 0%, var(--taupe_light) 100%);
+    border-radius: var(--radius_lg);
+    padding: 48px 56px;
+    box-shadow: rgba(0,0,0,0.14) 0 10px 36px 0;
+    overflow: hidden;
+  }
+  .admission_pass::before,
+  .admission_pass::after {
+    content: "";
+    position: absolute;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--white);
+    top: 50%; transform: translateY(-50%);
+  }
+  .admission_pass::before { left: -14px; }
+  .admission_pass::after  { right: -14px; }
+  .admission_price {
+    font-family: 'Marcellus', serif;
+    font-size: 88px;
+    line-height: 1;
+    color: var(--brand_primary);
+    letter-spacing: -2px;
+  }
+  .admission_price small {
+    font-family: 'Karla', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-top: 10px;
+    line-height: 1.6;
+  }
+  .admission_note {
+    margin-top: 26px;
+    padding-top: 22px;
+    border-top: 1px dashed rgba(146,109,92,0.35);
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    color: var(--body_text);
+    line-height: 1.7;
+  }
+  .admission_list {
+    list-style: none;
+    margin-top: 24px;
+  }
+  .admission_list li {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 18px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(146,109,92,0.18);
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    color: var(--body_text);
+    line-height: 1.6;
+  }
+  .admission_list li:last-child { border-bottom: none; }
+  .admission_list .ico {
+    font-family: 'Marcellus', serif;
+    color: var(--brand_primary);
+    font-size: 18px;
+  }
+  .admission_list strong {
+    display: block;
+    font-family: 'Marcellus', serif;
+    font-size: 17px;
+    color: var(--near_black);
+    margin-bottom: 2px;
+    font-weight: 400;
+  }
+
+  /* ========== Passport (second) ========== */
+  .passport { background: var(--sand); }
+  .passport_head {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 80px; align-items: end;
+    margin-bottom: 60px;
+  }
+  .ticket {
+    position: relative;
+    background: var(--white);
+    border-radius: var(--radius_lg);
+    padding: 28px 36px;
+    box-shadow: rgba(0,0,0,0.14) 0 6px 22px 0;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: center;
+  }
+  .ticket::before, .ticket::after {
+    content: "";
+    position: absolute;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--sand);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .ticket::before { left: -12px; }
+  .ticket::after  { right: -12px; }
+  .ticket .ticket_left h4 {
+    font-family: 'Marcellus', serif; font-size: 22px; line-height: 1.2;
+  }
+  .ticket .ticket_left h4 em { font-style: italic; color: var(--brand_primary); }
+  .ticket .ticket_left p {
+    font-family: 'Lato', sans-serif; font-size: 14px; color: var(--muted); margin-top: 2px;
+  }
+  .ticket .stub {
+    font-family: 'Marcellus', serif;
+    font-size: 46px; line-height: 1;
+    color: var(--brand_primary);
+    border-left: 1px dashed rgba(146,109,92,0.4);
+    padding-left: 24px;
+  }
+  .ticket .stub small { display: block; font-family: 'Karla', sans-serif; font-size: 10px; letter-spacing: 2.4px; color: var(--muted); text-transform: uppercase; margin-top: 6px; }
+
+  .timeline {
+    position: relative;
+    margin-top: 40px;
+    padding-left: 24px;
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 6px; bottom: 6px;
+    width: 2px;
+    background: linear-gradient(to bottom, rgba(146,109,92,0.2), rgba(146,109,92,0.6), rgba(146,109,92,0.2));
+  }
+  .tl_item {
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    gap: 30px;
+    padding: 28px 16px 28px 30px;
+    border-radius: var(--radius_md);
+    transition: background var(--t_button) ease, padding var(--t_button) ease;
+    position: relative;
+    cursor: default;
+  }
+  .tl_item::before {
+    content: "";
+    position: absolute;
+    left: -6px; top: 38px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--brand_primary);
+    box-shadow: 0 0 0 4px var(--sand);
+  }
+  .tl_item:hover { background: var(--white); padding-left: 38px; }
+  .tl_item .step {
+    font-family: 'Marcellus', serif;
+    font-size: 36px;
+    color: var(--brand_primary);
+  }
+  .tl_item h4 {
+    font-family: 'Marcellus', serif;
+    font-size: 22px;
+    line-height: 1.25;
+  }
+  .tl_item p {
+    font-family: 'Lato', sans-serif;
+    font-size: 15px; color: var(--body_text); margin-top: 4px;
+  }
+  .tl_item .time {
+    align-self: center;
+    font-family: 'Karla', sans-serif;
+    font-size: 11px; letter-spacing: 2.4px; text-transform: uppercase; color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: var(--radius_pill);
+    padding: 6px 12px;
+    white-space: nowrap;
+    transition: background var(--t_button) ease, color var(--t_button) ease, border var(--t_button) ease;
+  }
+  .tl_item:hover .time { background: var(--brand_primary); color: var(--white); border-color: var(--brand_primary); }
+
+  /* ========== Lounge ========== */
+  .lounge { background: var(--taupe_light); }
+  .lounge_grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px; align-items: center;
+  }
+  .lounge_mosaic {
+    position: relative;
+    height: 640px;
+  }
+  .lounge_mosaic .m1,
+  .lounge_mosaic .m2,
+  .lounge_mosaic .m3 {
+    position: absolute;
+    border-radius: var(--radius_lg);
+    background-size: cover; background-position: center;
+    box-shadow: rgba(0,0,0,0.25) 0 0 12px 0;
+    transition: transform 0.4s ease, filter var(--t_button) ease;
+  }
+  .lounge_mosaic .m1 { left: 0; top: 0; width: 55%; height: 64%; }
+  .lounge_mosaic .m2 { right: 0; top: 12%; width: 42%; height: 54%; }
+  .lounge_mosaic .m3 { left: 10%; bottom: 0; width: 62%; height: 40%; }
+  .lounge_mosaic .m1:hover,
+  .lounge_mosaic .m2:hover,
+  .lounge_mosaic .m3:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.03);
+  }
+  .lounge_mosaic .glass {
+    position: absolute;
+    right: 6%;
+    bottom: 8%;
+    z-index: 3;
+    max-width: 300px;
+    padding: 20px 22px;
+    border-radius: var(--radius_md);
+    background: rgba(237,233,228,0.55);
+    backdrop-filter: saturate(1.8) blur(5px);
+    -webkit-backdrop-filter: saturate(1.8) blur(5px);
+    font-family: 'Marcellus', serif;
+    font-size: 15px;
+    color: var(--near_black);
+    line-height: 1.5;
+    border: 1px solid rgba(255,255,255,0.4);
+  }
+  .lounge_list {
+    margin-top: 28px;
+    list-style: none;
+    border-top: 1px solid rgba(70,67,68,0.2);
+  }
+  .lounge_list li {
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    gap: 20px;
+    align-items: center;
+    padding: 22px 4px;
+    border-bottom: 1px solid rgba(70,67,68,0.2);
+    transition: padding var(--t_button) ease, background var(--t_button) ease;
+  }
+  .lounge_list li:hover { padding-left: 12px; background: rgba(255,255,255,0.4); }
+  .lounge_list .n {
+    font-family: 'Marcellus', serif;
+    color: var(--brand_primary);
+    font-size: 22px;
+  }
+  .lounge_list h4 {
+    font-family: 'Marcellus', serif;
+    font-size: 22px;
+    text-transform: capitalize;
+  }
+  .lounge_list p {
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    color: var(--body_text);
+    margin-top: 2px;
+  }
+  .lounge_list .chip {
+    font-family: 'Karla', sans-serif;
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    background: var(--sand); color: var(--brand_primary);
+    padding: 6px 10px;
+    border-radius: var(--radius_pill);
+    transition: background var(--t_button) ease, color var(--t_button) ease;
+  }
+  .lounge_list li:hover .chip { background: var(--brand_primary); color: var(--white); }
+
+  /* ========== Giveaway ========== */
+  .giveaway {
+    background: var(--near_black);
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+  .giveaway::before {
+    content: "";
+    position: absolute; inset: -30%;
+    background:
+      radial-gradient(600px 400px at 20% 20%, rgba(146,109,92,0.28), transparent 60%),
+      radial-gradient(500px 380px at 80% 80%, rgba(210,195,182,0.15), transparent 60%);
+    pointer-events: none;
+  }
+  .giveaway_wrap {
+    position: relative; z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 80px; align-items: center;
+  }
+  .giveaway .eye { color: var(--taupe_light); }
+  .giveaway .title { color: var(--white); }
+  .giveaway .title em { color: var(--taupe_light); }
+  .giveaway p { color: rgba(255,255,255,0.84); font-family: 'Lato', sans-serif; font-size: 17px; line-height: 1.8; }
+
+  .prize_ticket {
+    position: relative;
+    background: var(--sand);
+    color: var(--near_black);
+    border-radius: var(--radius_lg);
+    padding: 44px 56px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.28);
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 40px;
+    align-items: stretch;
+  }
+  .prize_ticket::before,
+  .prize_ticket::after {
+    content: "";
+    position: absolute;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--near_black);
+    top: 50%; transform: translateY(-50%);
+  }
+  .prize_ticket::before { left: -16px; }
+  .prize_ticket::after  { right: -16px; }
+  .prize_ticket .divider {
+    background: repeating-linear-gradient(to bottom, rgba(146,109,92,0.4) 0 6px, transparent 6px 14px);
+  }
+  .prize_left .kicker {
+    font-family: 'Karla', sans-serif;
+    font-size: 10px; letter-spacing: 3.6px; text-transform: uppercase;
+    color: var(--brand_primary);
+  }
+  .prize_left h3 {
+    font-family: 'Marcellus', serif;
+    font-size: 48px; line-height: 1;
+    margin-top: 10px;
+  }
+  .prize_left h3 em { font-style: italic; color: var(--brand_primary); }
+  .prize_left p {
+    font-family: 'Lato', sans-serif;
+    font-size: 15px; color: var(--body_text);
+    margin-top: 16px;
+  }
+  .prize_right {
+    display: flex; flex-direction: column; gap: 18px; justify-content: center;
+  }
+  .prize_right .row {
+    display: flex; align-items: center; gap: 14px;
+    padding: 12px 14px;
+    background: var(--white);
+    border-radius: var(--radius_md);
+    border: 1px solid rgba(218,218,218,0.8);
+    transition: border var(--t_button) ease, background var(--t_button) ease;
+  }
+  .prize_right .row:hover {
+    border-color: var(--brand_primary);
+    background: var(--taupe_light);
+  }
+  .prize_right .tag {
+    font-family: 'Marcellus', serif;
+    font-size: 14px;
+    color: var(--white);
+    background: var(--brand_primary);
+    padding: 6px 10px;
+    border-radius: var(--radius_pill);
+  }
+  .prize_right .txt {
+    font-family: 'Karla', sans-serif;
+    font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--near_black);
+  }
+
+  /* ========== Surprise rewards ========== */
+  .rewards {
+    background: var(--warm_mist);
+    text-align: center;
+  }
+  .rewards_inner { max-width: 980px; margin: 0 auto; }
+  .rewards_cards {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .reward {
+    background: var(--white);
+    border: 1px solid rgba(218,218,218,0.6);
+    border-radius: var(--radius_lg);
+    padding: 34px 30px 32px;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    transition: background var(--t_button) ease, border var(--t_button) ease, transform 0.4s ease;
+  }
+  .reward:hover {
+    background: var(--sand);
+    border-color: var(--brand_primary);
+    transform: translateY(-3px);
+  }
+  .reward .stamp {
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 46px; height: 46px;
+    border: 1px dashed var(--brand_primary);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: 'Marcellus', serif;
+    font-size: 12px;
+    color: var(--brand_primary);
+    transform: rotate(-8deg);
+    text-align: center;
+    line-height: 1;
+    transition: transform var(--t_button) ease, background var(--t_button) ease, color var(--t_button) ease;
+  }
+  .reward:hover .stamp {
+    transform: rotate(0);
+    background: var(--brand_primary);
+    color: var(--white);
+  }
+  .reward .n {
+    font-family: 'Marcellus', serif;
+    font-size: 28px;
+    color: var(--brand_primary);
+  }
+  .reward h4 {
+    font-family: 'Marcellus', serif;
+    font-size: 22px;
+    text-transform: capitalize;
+    margin-top: 10px;
+  }
+  .reward p {
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    color: var(--body_text);
+    margin-top: 8px;
+  }
+
+  /* ========== Reserve / Phone CTA ========== */
+  .reserve {
+    background:
+      linear-gradient(rgba(237,233,228,0.88), rgba(237,233,228,0.88)),
+      url("./images/inside3.JPG") center/cover no-repeat;
+    text-align: center;
+    padding: 140px 72px;
+  }
+  .reserve_card {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 64px 56px 56px;
+    background: var(--white);
+    border-radius: var(--radius_lg);
+    box-shadow: rgba(0,0,0,0.2) 0 0 20px 0;
+    text-align: center;
+  }
+  .reserve_card .eye { color: var(--brand_primary); }
+  .reserve_card h2 {
+    font-family: 'Marcellus', serif;
+    font-size: 54px; line-height: 1.05;
+    margin-top: 12px;
+    color: var(--near_black);
+  }
+  .reserve_card h2 em { font-style: italic; color: var(--brand_primary); }
+  .reserve_card p {
+    font-family: 'Lato', sans-serif;
+    font-size: 16px; line-height: 1.7;
+    color: var(--body_text);
+    margin: 18px auto 0;
+    max-width: 520px;
+  }
+  .phone_cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 36px;
+    padding: 20px 44px;
+    background: var(--near_black);
+    color: var(--white);
+    border-radius: var(--radius_pill);
+    font-family: 'Marcellus', serif;
+    font-size: 28px;
+    letter-spacing: 1.2px;
+    text-decoration: none;
+    transition: background var(--t_button) ease, transform 0.4s ease, box-shadow var(--t_button) ease;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+  }
+  .phone_cta:hover {
+    background: var(--brand_primary);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px rgba(146,109,92,0.35);
+  }
+  .phone_cta .phone_ico {
+    width: 22px; height: 22px;
+    display: inline-block;
+  }
+  .phone_sub {
+    font-family: 'Karla', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2.8px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 22px;
+  }
+
+  /* ========== Vitamin IM ========== */
+  .vitamin {
+    background:
+      linear-gradient(rgba(16,16,16,0.72), rgba(16,16,16,0.72)),
+      url("./images/orange.jpg") center/cover no-repeat;
+    color: var(--white);
+  }
+  .vitamin_wrap {
+    max-width: 820px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .vitamin .eye { color: var(--taupe_medium); }
+  .vitamin .title { color: var(--white); }
+  .vitamin .title em { color: var(--taupe_light); }
+  .vitamin p { color: rgba(255,255,255,0.86); font-family: 'Lato', sans-serif; font-size: 17px; line-height: 1.8; margin: 22px auto 0; max-width: 620px; }
+  .vitamin_phone {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 34px;
+    padding: 16px 36px;
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: var(--radius_pill);
+    font-family: 'Karla', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background var(--t_button) ease, border var(--t_button) ease, transform 0.4s ease;
+  }
+  .vitamin_phone:hover {
+    background: var(--white);
+    color: var(--near_black);
+    border-color: var(--white);
+    transform: translateY(-2px);
+  }
+  .vitamin_phone .phone_ico { width: 14px; height: 14px; }
+
+  /* ========== Footer ========== */
+  footer {
+    background: var(--charcoal);
+    color: var(--white);
+    padding: 80px 72px 40px;
+    font-family: 'Karla', sans-serif;
+  }
+  .foot_top {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1fr;
+    gap: 60px;
+  }
+  .foot_logo img {
+    height: 80px;
+    width: auto;
+    display: block;
+    margin-bottom: 24px;
+  }
+  footer h5 {
+    font-family: 'Marcellus', serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 10px; font-size: 13px; color: #CFC4B7; }
+  footer a { color: #CFC4B7; transition: color var(--t_nav) ease; }
+  footer a:hover { color: var(--white); }
+  .social { display: flex; gap: 10px; margin-top: 18px; }
+  .social a {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.3);
+    display: grid; place-items: center;
+    color: var(--white);
+    transition: background var(--t_button) ease, border var(--t_button) ease, color var(--t_button) ease, transform 0.3s ease;
+  }
+  .social a:hover {
+    background: var(--taupe_medium);
+    border-color: var(--taupe_medium);
+    color: var(--near_black);
+    transform: translateY(-2px);
+  }
+  .social svg { width: 18px; height: 18px; }
+  .foot_bottom {
+    border-top: 1px solid rgba(255,255,255,0.12);
+    margin-top: 60px; padding-top: 24px;
+    display: flex; justify-content: space-between;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #9B9391;
+  }
+
+  /* Telehealth side tab */
+  .telehealth {
+    position: fixed;
+    right: 0; top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    transform-origin: right top;
+    background: var(--near_black);
+    color: var(--white);
+    padding: 10px 18px;
+    font-family: 'Karla', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    border-radius: var(--radius_md) var(--radius_md) 0 0;
+    z-index: 40;
+    cursor: pointer;
+    transition: background var(--t_button) ease;
+    text-decoration: none;
+  }
+  .telehealth:hover { background: var(--brand_primary); color: var(--white); }
+  .telehealth .phone_ico {
+    width: 12px; height: 12px;
+    margin-right: 8px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- Promotional ticker -->
+<div class="ticker" aria-label="Promotional offers">
+  <div class="ticker_slide active">
+    <strong>The Eternal Glow Event</strong><span class="dot"></span>
+    One Night · Four Stations · Unforgettable
+  </div>
+  <div class="ticker_slide">
+    <strong>VIP Early Access</strong><span class="dot"></span>
+    Members Enter Complimentary at 5:00 PM
+  </div>
+  <div class="ticker_slide">
+    <strong>Grand Prize</strong><span class="dot"></span>
+    A Year of Free Facials · Quarterly Treatments
+  </div>
+  <div class="ticker_slide">
+    <strong>Live Music by Chris Smith</strong><span class="dot"></span>
+    Upstairs Social Lounge
+  </div>
+</div>
+
+<!-- Sticky nav -->
+<nav class="nav">
+  <div class="nav_inner">
+    <a href="#top" class="logo" aria-label="Eternal Wellness">
+      <img src="./images/logo-b.png" alt="Eternal Wellness" />
+    </a>
+    <ul class="nav_links">
+      <li><a href="#admission">Admission</a></li>
+      <li><a href="#passport">Passport</a></li>
+      <li><a href="#lounge">Lounge</a></li>
+      <li><a href="#giveaway">Giveaway</a></li>
+      <li><a href="#reserve">Reserve</a></li>
+    </ul>
+    <div class="nav_right">
+      <span>May 7 · 6 PM</span>
+      <a class="btn" href="tel:+12312524474">
+        <svg class="phone_ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (231) 252 4474
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header id="top" class="hero">
+  <div class="hero_left">
+    <div class="hero_eye">An Evening At Eternal Wellness</div>
+    <h1 class="hero_title">The Eternal <em>Glow</em> Event.</h1>
+    <p class="hero_sub">An intimate evening of self care, discovery, and celebration. Collect your passport stamps across our experience stations, then unwind upstairs with cocktails, bites, and live music.</p>
+    <div class="hero_meta">
+      <div>
+        <div class="k">Date</div>
+        <div class="v">Thursday, May 7</div>
+      </div>
+      <div>
+        <div class="k">VIP Early Access</div>
+        <div class="v">5:00 PM</div>
+      </div>
+      <div>
+        <div class="k">General Admission</div>
+        <div class="v">6:00 to 8:30 PM</div>
+      </div>
+    </div>
+    <div class="hero_actions">
+      <a class="btn dark" href="tel:+12312524474">
+        <svg class="phone_ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call (231) 252 4474
+      </a>
+      <a class="btn ghost" href="#passport">About the Passport</a>
+    </div>
+  </div>
+
+  <div class="hero_photo">
+    <div class="frame active" style="background-image: url('./images/people1.JPG')"></div>
+    <div class="frame" style="background-image: url('./images/inside2.JPG')"></div>
+    <div class="frame" style="background-image: url('./images/people4.JPG')"></div>
+    <div class="frame" style="background-image: url('./images/inside4.JPG')"></div>
+    <div class="cap">Inside Eternal Wellness</div>
+    <div class="arrows">
+      <button data-dir="-1" aria-label="Previous">‹</button>
+      <button data-dir="1" aria-label="Next">›</button>
+    </div>
+  </div>
+</header>
+
+<!-- Ambient marquee -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee_track">
+    <span>Glow Passport</span><em>·</em>
+    <span>Station Stamps</span><em>·</em>
+    <span>Upstairs Lounge</span><em>·</em>
+    <span>Live Music</span><em>·</em>
+    <span>Year of Facials</span><em>·</em>
+    <span>VIP Early Access</span><em>·</em>
+    <span>Glow Passport</span><em>·</em>
+    <span>Station Stamps</span><em>·</em>
+    <span>Upstairs Lounge</span><em>·</em>
+    <span>Live Music</span><em>·</em>
+    <span>Year of Facials</span><em>·</em>
+    <span>VIP Early Access</span><em>·</em>
+  </div>
+</div>
+
+<!-- Admission / $50 Ticket (now before Passport) -->
+<section id="admission" class="admission">
+  <div class="admission_wrap">
+    <div class="reveal">
+      <div class="eye">Your Admission</div>
+      <h2 class="title">A <em>$50 ticket</em> that pays you back.</h2>
+      <p class="lede" style="margin-top:18px">
+        Your ticket is a $50 gift card, fully redeemable toward any product purchase or service booking made during the evening. It is your entry at the door and the start of whatever you take home.
+      </p>
+      <ul class="admission_list">
+        <li>
+          <span class="ico">01</span>
+          <div>
+            <strong>Fully redeemable, event only</strong>
+            Apply the full $50 toward products or a service booking the night of the event.
+          </div>
+        </li>
+        <li>
+          <span class="ico">02</span>
+          <div>
+            <strong>Serves as your ticket at the door</strong>
+            We will check your name against our guest list and ask for a quick show of ID on arrival.
+          </div>
+        </li>
+        <li>
+          <span class="ico">03</span>
+          <div>
+            <strong>Receive your event passport</strong>
+            Once you are checked in, you will be handed your passport and set loose into the evening.
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="admission_pass reveal">
+      <div class="admission_price">
+        $50
+        <small>Ticket · Gift Card · Passport</small>
+      </div>
+      <div class="admission_note">
+        Fully redeemable toward purchases on product and/or service bookings made that evening. The card is only valid during the event and acts as your ticket at the door, along with our consolidated list of who has signed up. A quick ID check is all we will ask. On arrival, present your gift card, and you will receive your event passport.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Passport / how it works (now after Admission) -->
+<section id="passport" class="passport">
+  <div class="passport_head">
+    <div class="reveal">
+      <div class="eye">At Check In</div>
+      <h2 class="title">Your evening, <em>stamped</em>.</h2>
+      <p class="lede" style="margin-top:18px">
+        At check in, you will receive your Glow Passport, your guide to the night. Move through each experience, collect stamps, and unlock what is upstairs.
+      </p>
+    </div>
+    <div class="ticket reveal">
+      <div class="ticket_left">
+        <h4>Glow <em>Passport</em></h4>
+        <p>Admits One · Thursday, May 7</p>
+      </div>
+      <div class="stub">
+        04
+        <small>Stamps to Unlock</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="tl_item reveal">
+      <div class="step">01</div>
+      <div>
+        <h4>Visit each experience station</h4>
+        <p>Four curated moments across our main floor, each hosted by one of our providers.</p>
+      </div>
+      <div class="time">Main Floor</div>
+    </div>
+    <div class="tl_item reveal">
+      <div class="step">02</div>
+      <div>
+        <h4>Learn about treatments and personalized recommendations</h4>
+        <p>One on one consultations tailored to your skin, your goals, and your rhythm.</p>
+      </div>
+      <div class="time">Providers Onsite</div>
+    </div>
+    <div class="tl_item reveal">
+      <div class="step">03</div>
+      <div>
+        <h4>Get your passport stamped along the way</h4>
+        <p>Every station earns a stamp. Every stamp brings you closer to the upstairs lounge.</p>
+      </div>
+      <div class="time">One Per Station</div>
+    </div>
+    <div class="tl_item reveal">
+      <div class="step">04</div>
+      <div>
+        <h4>Unlock the upstairs social lounge</h4>
+        <p>A complete passport is your key. Cocktails, catered bites, and live music await.</p>
+      </div>
+      <div class="time">Second Floor</div>
+    </div>
+  </div>
+</section>
+
+<!-- Lounge -->
+<section id="lounge" class="lounge">
+  <div class="lounge_grid">
+
+    <div class="lounge_mosaic reveal">
+      <div class="m1" style="background-image: url('./images/people4.JPG')"></div>
+      <div class="m2" style="background-image: url('./images/inside6.JPG')"></div>
+      <div class="m3" style="background-image: url('./images/people2.JPG')"></div>
+      <div class="glass">Complete your passport and step into the <em>upstairs lounge</em>.</div>
+    </div>
+
+    <div class="reveal">
+      <div class="eye">The Upstairs Social Lounge</div>
+      <h2 class="title">After the stamps, the <em>soft part</em> of the night.</h2>
+      <p class="lede" style="margin-top:18px">Once completed, you will unlock access to our upstairs social lounge, a curated evening of slow pours, warm bites, and live music.</p>
+
+      <ul class="lounge_list">
+        <li>
+          <div class="n">01</div>
+          <div>
+            <h4>Cocktails and Bartender</h4>
+            <p>Handcrafted signatures and classic pours, poured just for you.</p>
+          </div>
+          <span class="chip">Open Bar</span>
+        </li>
+        <li>
+          <div class="n">02</div>
+          <div>
+            <h4>Catered Bites</h4>
+            <p>A curated menu of small plates served throughout the evening.</p>
+          </div>
+          <span class="chip">All Night</span>
+        </li>
+        <li>
+          <div class="n">03</div>
+          <div>
+            <h4>Live Music by Chris Smith</h4>
+            <p>An intimate acoustic set from a local favorite.</p>
+          </div>
+          <span class="chip">7:00 PM</span>
+        </li>
+        <li>
+          <div class="n">04</div>
+          <div>
+            <h4>Giveaway Entry Access</h4>
+            <p>Upstairs access secures your entry into the Eternal Glow Giveaway.</p>
+          </div>
+          <span class="chip">Auto Enter</span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- Giveaway -->
+<section id="giveaway" class="giveaway">
+  <div class="giveaway_wrap">
+    <div class="reveal">
+      <div class="eye">The Eternal Glow Giveaway</div>
+      <h2 class="title">Complete your passport, <em>win a year of glow</em>.</h2>
+      <p style="margin-top:20px">All guests who complete their Glow Passport will be entered to win. Because the best part of a great night is not leaving empty handed, it is leaving radiant.</p>
+    </div>
+
+    <div class="prize_ticket reveal">
+      <div class="prize_left">
+        <div class="kicker">Grand Prize</div>
+        <h3>A Year of <em>Free Facials</em>.</h3>
+        <p>Quarterly treatments, thoughtfully paced across the year, so your glow never takes a season off.</p>
+      </div>
+      <div class="divider"></div>
+      <div class="prize_right">
+        <div class="row">
+          <div class="tag">Entry</div>
+          <div class="txt">Complete All Four Stamps</div>
+        </div>
+        <div class="row">
+          <div class="tag">Extra Entries</div>
+          <div class="txt">Book a Service That Evening</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Surprise rewards -->
+<section class="rewards">
+  <div class="rewards_inner">
+    <div class="reveal">
+      <div class="eye">Keep an eye on your passport</div>
+      <h2 class="title" style="text-align:center">Some stamps come with a <em>surprise</em>.</h2>
+      <p class="lede" style="margin:18px auto 0">Upon entry, you may receive a surprise reward tucked inside your passport. A small token. An unexpected delight.</p>
+    </div>
+
+    <div class="rewards_cards">
+      <div class="reward reveal">
+        <div class="stamp">Glow<br/>01</div>
+        <div class="n">01</div>
+        <h4>Discounts on Treatments</h4>
+        <p>Event only savings on select services, redeemable the night of. A quiet nudge toward the treatment you have been considering.</p>
+      </div>
+      <div class="reward reveal">
+        <div class="stamp">Glow<br/>02</div>
+        <div class="n">02</div>
+        <h4>Product Gifts</h4>
+        <p>A thoughtfully chosen sample or full size surprise from our shelf. A taste of the ritual you will want to take home.</p>
+      </div>
+      <div class="reward reveal">
+        <div class="stamp">Glow<br/>03</div>
+        <div class="n">03</div>
+        <h4>Complimentary Upgrades</h4>
+        <p>A bonus add on with your next booking. Because some stamps open more doors than others.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Vitamin IM -->
+<section class="vitamin">
+  <div class="vitamin_wrap reveal">
+    <div class="eye">Complimentary for Every Guest</div>
+    <h2 class="title">A little <em>boost</em>, on us.</h2>
+    <p>Every guest receives a complimentary Vitamin IM injection on arrival, a quick and feel good welcome from our wellness team to set the tone for the evening.</p>
+    <a class="vitamin_phone" href="tel:+12312524474">
+      <svg class="phone_ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Questions? Call (231) 252 4474
+    </a>
+  </div>
+</section>
+
+<!-- Reserve / Phone CTA -->
+<section id="reserve" class="reserve">
+  <div class="reserve_card reveal">
+    <div class="eye">Reserve Your Spot</div>
+    <h2>Call to <em>claim your passport</em>.</h2>
+    <p>Seats are intimate and limited. Call us to reserve your $50 ticket, fully redeemable toward products or a service booking the evening of the event.</p>
+    <a class="phone_cta" href="tel:+12312524474" aria-label="Call Eternal Wellness">
+      <svg class="phone_ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      (231) 252 4474
+    </a>
+    <div class="phone_sub">Thursday, May 7 · VIP 5:00 PM · General 6:00 to 8:30 PM</div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="foot_top">
+    <div>
+      <div class="foot_logo">
+        <img src="./images/logo-w.png" alt="Eternal Wellness" />
+      </div>
+      <p style="color:#CFC4B7; font-size:13px; line-height:1.7; max-width:340px;">
+        A medical spa rooted in quiet luxury, thoughtful treatments, and the kind of care that makes you want to come back.
+      </p>
+      <div class="social">
+        <a href="https://www.instagram.com/eternal_wellness/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://www.facebook.com/eternalwellnessmi/" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@Dr.JoelStrehl" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <h5>Event</h5>
+      <ul>
+        <li><a href="#admission">Admission</a></li>
+        <li><a href="#passport">Passport</a></li>
+        <li><a href="#lounge">Lounge</a></li>
+        <li><a href="#giveaway">Giveaway</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Visit</h5>
+      <ul>
+        <li>Eternal Wellness Spa</li>
+        <li>Thursday, May 7</li>
+        <li>VIP · 5:00 PM</li>
+        <li>General · 6:00 to 8:30 PM</li>
+      </ul>
+    </div>
+    <div>
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="tel:+12312524474">(231) 252 4474</a></li>
+        <li><a href="#reserve">Reserve by Phone</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot_bottom">
+    <span>© Eternal Wellness Medical Spa</span>
+    <span>The Eternal Glow Event · May 7</span>
+  </div>
+</footer>
+
+<!-- Telehealth side tab -->
+<a href="tel:+12312524474" class="telehealth"><svg class="phone_ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call · (231) 252 4474</a>
+
+<script>
+  // Reveal on scroll
+  (function () {
+    var items = document.querySelectorAll('.reveal');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    items.forEach(function (i) { io.observe(i); });
+  })();
+
+  // Ticker autoplay
+  (function () {
+    var slides = document.querySelectorAll('.ticker_slide');
+    var idx = 0;
+    if (!slides.length) return;
+    setInterval(function () {
+      slides[idx].classList.remove('active');
+      idx = (idx + 1) % slides.length;
+      slides[idx].classList.add('active');
+    }, 5000);
+  })();
+
+  // Hero photo rotation
+  (function () {
+    var frames = document.querySelectorAll('.hero_photo .frame');
+    var idx = 0;
+    if (!frames.length) return;
+    var buttons = document.querySelectorAll('.hero_photo .arrows button');
+    function go(dir) {
+      frames[idx].classList.remove('active');
+      idx = (idx + dir + frames.length) % frames.length;
+      frames[idx].classList.add('active');
+    }
+    buttons.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var dir = parseInt(b.getAttribute('data-dir'), 10) || 1;
+        go(dir);
+      });
+    });
+    setInterval(function () { go(1); }, 6000);
+  })();
+</script>
+
+</body>
+</html>
