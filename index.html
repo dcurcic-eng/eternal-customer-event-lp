@@ -695,6 +695,7 @@
     background: var(--brand_primary);
     padding: 6px 10px;
     border-radius: var(--radius_pill);
+    text-align: center;
   }
   .prize_right .txt {
     font-family: 'Karla', sans-serif;
@@ -799,6 +800,95 @@
     margin: 18px auto 0;
     max-width: 520px;
   }
+  .signup_form {
+    margin: 32px auto 0;
+    max-width: 560px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    text-align: left;
+  }
+  .signup_form .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .signup_form .field:nth-of-type(3),
+  .signup_form .field:nth-of-type(4) {
+    grid-column: span 1;
+  }
+  .signup_form label {
+    font-family: 'Karla', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .signup_form input {
+    height: 52px;
+    padding: 0 18px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius_md);
+    background: var(--white);
+    font-family: 'Karla', sans-serif;
+    font-size: 14px;
+    color: var(--near_black);
+    transition: border var(--t_button) ease, background var(--t_button) ease, box-shadow var(--t_button) ease;
+  }
+  .signup_form input:focus {
+    outline: none;
+    border-color: var(--brand_primary);
+    background: var(--sand);
+    box-shadow: 0 0 0 3px rgba(146,109,92,0.12);
+  }
+  .signup_form input:invalid:not(:placeholder-shown) {
+    border-color: var(--terracotta);
+  }
+  .signup_submit {
+    grid-column: 1 / -1;
+    margin-top: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 18px 32px;
+    background: var(--near_black);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius_pill);
+    font-family: 'Marcellus', serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background var(--t_button) ease, transform 0.4s ease, box-shadow var(--t_button) ease;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+  }
+  .signup_submit:hover {
+    background: var(--brand_primary);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(146,109,92,0.32);
+  }
+  .signup_submit .phone_ico {
+    width: 18px; height: 18px;
+    margin-right: 0;
+  }
+  .signup_thanks {
+    grid-column: 1 / -1;
+    display: none;
+    padding: 16px 18px;
+    margin-top: 4px;
+    background: var(--sand);
+    border: 1px dashed var(--brand_primary);
+    border-radius: var(--radius_md);
+    color: var(--near_black);
+    font-family: 'Karla', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.4px;
+    text-align: center;
+  }
+  .signup_form.submitted .signup_thanks { display: block; }
+
   .phone_cta {
     display: inline-flex;
     align-items: center;
@@ -1299,13 +1389,13 @@
       <li><a href="#passport">Passport</a></li>
       <li><a href="#lounge">Lounge</a></li>
       <li><a href="#giveaway">Giveaway</a></li>
-      <li><a href="#reserve">Reserve</a></li>
+      <li><a href="#signup">Sign Up</a></li>
     </ul>
     <div class="nav_right">
       <span>May 7 · 6 PM</span>
-      <a class="btn" href="tel:+12312524474">
-        <svg class="phone_ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        (231) 252 4474
+      <a class="btn" href="#signup">
+        <svg class="phone_ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/><path d="M2 8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4V8z"/></svg>
+        Sign Up
       </a>
     </div>
     <button class="nav_toggle" aria-label="Menu" aria-expanded="false">
@@ -1335,9 +1425,9 @@
       </div>
     </div>
     <div class="hero_actions">
-      <a class="btn dark" href="tel:+12312524474">
-        <svg class="phone_ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        Call (231) 252 4474
+      <a class="btn dark" href="#signup">
+        <svg class="phone_ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/><path d="M2 8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4V8z"/></svg>
+        Sign Up for the Event
       </a>
       <a class="btn ghost" href="#passport">About the Passport</a>
     </div>
@@ -1601,23 +1691,44 @@
     <div class="eye">Unwind and Recharge</div>
     <h2 class="title">A quick <em>reset</em>, then a small <em>boost</em>.</h2>
     <p>Release the stress of the day with a professional chair massage from Zen Wellness Massage Therapy for just $5 to $10. Then recharge with a Vitamin IM shot for just $5.</p>
-    <a class="vitamin_phone" href="tel:+12312524474">
-      <svg class="phone_ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      Questions? Call (231) 252 4474
+    <a class="vitamin_phone" href="#signup">
+      <svg class="phone_ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/><path d="M2 8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4V8z"/></svg>
+      Sign Up for the Event
     </a>
   </div>
 </section>
 
-<!-- Reserve / Phone CTA -->
-<section id="reserve" class="reserve">
+<!-- Sign Up -->
+<section id="signup" class="reserve">
   <div class="reserve_card reveal">
-    <div class="eye">Reserve Your Spot</div>
-    <h2>Call to <em>claim your passport</em>.</h2>
-    <p>Seats are intimate and limited. Call us to reserve your $50 ticket, fully redeemable toward products or a service booking the evening of the event.</p>
-    <a class="phone_cta" href="tel:+12312524474" aria-label="Call Eternal Wellness">
-      <svg class="phone_ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      (231) 252 4474
-    </a>
+    <div class="eye">Sign Up for the Event</div>
+    <h2>Claim your <em>passport</em>.</h2>
+    <p>Seats are intimate and limited. Drop your details below and we will add you to the guest list. Your $50 ticket is fully redeemable toward products or a service booking the evening of the event.</p>
+
+    <form class="signup_form" id="signupForm" novalidate>
+      <div class="field">
+        <label for="fn">First Name</label>
+        <input id="fn" name="firstName" type="text" autocomplete="given-name" required />
+      </div>
+      <div class="field">
+        <label for="ln">Last Name</label>
+        <input id="ln" name="lastName" type="text" autocomplete="family-name" required />
+      </div>
+      <div class="field">
+        <label for="ph">Phone Number</label>
+        <input id="ph" name="phone" type="tel" autocomplete="tel" placeholder="(231) 252 4474" required />
+      </div>
+      <div class="field">
+        <label for="em">Email</label>
+        <input id="em" name="email" type="email" autocomplete="email" required />
+      </div>
+      <button type="submit" class="signup_submit">
+        <svg class="phone_ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/><path d="M2 8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4V8z"/></svg>
+        Sign Up for the Event
+      </button>
+      <div class="signup_thanks" id="signupThanks" role="status" aria-live="polite">Thank you. Your spot is saved. We will be in touch to confirm.</div>
+    </form>
+
     <div class="phone_sub">Thursday, May 7 · VIP 5:00 PM · General 6:00 to 8:30 PM</div>
   </div>
 </section>
@@ -1663,10 +1774,10 @@
       </ul>
     </div>
     <div>
-      <h5>Contact</h5>
+      <h5>Reserve</h5>
       <ul>
-        <li><a href="tel:+12312524474">(231) 252 4474</a></li>
-        <li><a href="#reserve">Reserve by Phone</a></li>
+        <li><a href="#signup">Sign Up for the Event</a></li>
+        <li><a href="#signup">Join the Guest List</a></li>
       </ul>
     </div>
   </div>
@@ -1677,7 +1788,7 @@
 </footer>
 
 <!-- Telehealth side tab -->
-<a href="tel:+12312524474" class="telehealth"><svg class="phone_ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call · (231) 252 4474</a>
+<a href="#signup" class="telehealth"><svg class="phone_ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/><path d="M2 8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4V8z"/></svg>Sign Up for the Event</a>
 
 <script>
   // Reveal on scroll
@@ -1742,6 +1853,31 @@
       });
     });
     setInterval(function () { go(1); }, 6000);
+  })();
+
+  // Sign-up form handler
+  (function () {
+    var form = document.getElementById('signupForm');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      // Capture values (here we just flash a thank-you message;
+      // wire this up to your backend / CRM of choice)
+      form.classList.add('submitted');
+      form.querySelectorAll('input').forEach(function (el) {
+        el.setAttribute('disabled', 'disabled');
+      });
+      var btn = form.querySelector('.signup_submit');
+      if (btn) {
+        btn.setAttribute('disabled', 'disabled');
+        btn.style.opacity = '0.6';
+        btn.style.cursor = 'default';
+      }
+    });
   })();
 </script>
 
