@@ -44,7 +44,8 @@
     color: var(--body_text);
     background: var(--warm_mist);
     line-height: 1.8em;
-    width: 1440px;
+    max-width: 1440px;
+    width: 100%;
     margin: 0 auto;
     overflow-x: hidden;
   }
@@ -959,6 +960,311 @@
     vertical-align: middle;
   }
 
+
+  /* Mobile nav toggle (hidden on desktop) */
+  .nav_toggle {
+    display: none;
+    background: transparent;
+    border: 1px solid rgba(16,16,16,0.2);
+    border-radius: var(--radius_md);
+    width: 44px; height: 44px;
+    cursor: pointer;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    color: var(--near_black);
+  }
+  .nav_toggle svg { width: 20px; height: 20px; }
+
+  /* ============================================================
+     RESPONSIVE — Tablet
+     ============================================================ */
+  @media (max-width: 1024px) {
+    .nav_inner { height: 110px; padding: 0 32px; gap: 20px; }
+    .logo img { height: 72px; }
+    .nav_links { gap: 22px; }
+    .nav_links a { font-size: 11px; }
+    .nav_right { gap: 14px; font-size: 10px; }
+
+    .hero { padding: 48px 32px 56px; grid-template-columns: 1fr; gap: 40px; }
+    .hero_title { font-size: 72px; }
+    .hero_sub { font-size: 16px; max-width: 100%; }
+    .hero_photo { height: 520px; }
+
+    section { padding: 90px 32px; }
+    .title { font-size: 46px; }
+
+    .admission_wrap,
+    .passport_head,
+    .lounge_grid,
+    .giveaway_wrap { grid-template-columns: 1fr; gap: 50px; }
+
+    .admission_pass { padding: 40px 40px; }
+    .admission_price { font-size: 72px; }
+
+    .lounge_mosaic { height: 520px; }
+
+    .prize_ticket { padding: 36px 40px; gap: 28px; }
+    .prize_left h3 { font-size: 38px; }
+
+    .rewards_cards { grid-template-columns: 1fr 1fr; }
+
+    .reserve { padding: 100px 32px; }
+    .reserve_card { padding: 48px 36px; }
+    .reserve_card h2 { font-size: 44px; }
+
+    .marquee { font-size: 28px; padding: 22px 0; }
+
+    footer { padding: 64px 32px 32px; }
+    .foot_top { grid-template-columns: 1fr 1fr; gap: 40px; }
+  }
+
+  /* ============================================================
+     RESPONSIVE — Mobile
+     ============================================================ */
+  @media (max-width: 720px) {
+    html, body { overflow-x: hidden; }
+    body { line-height: 1.7em; }
+
+    /* Ticker */
+    .ticker { height: auto; min-height: 48px; font-size: 10px; letter-spacing: 2px; padding: 8px 12px; }
+    .ticker_slide { position: relative; inset: auto; padding: 4px 8px; text-align: center; line-height: 1.5; flex-wrap: wrap; gap: 8px; }
+    .ticker_slide:not(.active) { display: none; }
+    .ticker_slide.active { display: flex; }
+
+    /* Nav */
+    .nav_inner {
+      height: 72px;
+      padding: 0 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo img { height: 48px; }
+    .nav_toggle { display: inline-flex; }
+    .nav_right { display: none; }
+
+    .nav_links {
+      position: absolute;
+      top: 100%;
+      left: 0; right: 0;
+      flex-direction: column;
+      gap: 0;
+      background: rgba(237,233,229,0.98);
+      backdrop-filter: saturate(1.8) blur(8px);
+      -webkit-backdrop-filter: saturate(1.8) blur(8px);
+      border-top: 1px solid rgba(146,109,92,0.18);
+      border-bottom: 1px solid rgba(146,109,92,0.18);
+      padding: 8px 18px 16px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    .nav.open .nav_links { max-height: 480px; padding: 12px 18px 20px; }
+    .nav_links li { border-bottom: 1px solid rgba(146,109,92,0.14); }
+    .nav_links li:last-child { border-bottom: none; }
+    .nav_links a {
+      display: block;
+      padding: 14px 4px;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    /* Hero */
+    .hero { padding: 36px 18px 48px; gap: 32px; }
+    .hero_eye { font-size: 10px; letter-spacing: 2.4px; }
+    .hero_eye::before { width: 28px; }
+    .hero_title { font-size: 44px; line-height: 1.02; margin-top: 16px; }
+    .hero_sub { font-size: 15px; margin: 18px 0 24px; line-height: 1.65; }
+    .hero_meta {
+      grid-template-columns: 1fr;
+      gap: 14px;
+      padding: 18px 0;
+      margin-bottom: 24px;
+    }
+    .hero_meta .v { font-size: 18px; }
+    .hero_actions { gap: 10px; }
+    .hero_actions .btn { flex: 1 1 100%; padding: 14px 18px; font-size: 11px; letter-spacing: 1.4px; }
+    .hero_photo { height: 420px; border-radius: var(--radius_md); }
+    .hero_photo .cap { font-size: 9px; letter-spacing: 1.8px; padding: 8px 10px; right: 12px; bottom: 12px; }
+    .hero_photo .arrows { left: 12px; bottom: 12px; }
+    .hero_photo .arrows button { width: 34px; height: 34px; }
+
+    /* Marquee */
+    .marquee { font-size: 20px; padding: 16px 0; letter-spacing: 1px; }
+    .marquee_track { gap: 32px; }
+
+    /* Sections */
+    section { padding: 64px 18px; }
+    .title { font-size: 34px; line-height: 1.1; }
+    .lede { font-size: 15px; line-height: 1.7; }
+
+    /* Admission */
+    .admission_wrap { gap: 36px; }
+    .admission_pass { padding: 32px 24px; border-radius: var(--radius_md); }
+    .admission_pass::before,
+    .admission_pass::after { width: 20px; height: 20px; }
+    .admission_pass::before { left: -10px; }
+    .admission_pass::after { right: -10px; }
+    .admission_price { font-size: 58px; }
+    .admission_price small { font-size: 11px; letter-spacing: 2px; }
+    .admission_note { font-size: 14px; margin-top: 20px; padding-top: 18px; }
+    .admission_list li {
+      grid-template-columns: 24px 1fr;
+      gap: 12px;
+      padding: 12px 0;
+      font-size: 14px;
+    }
+    .admission_list strong { font-size: 16px; }
+    .admission_list .ico { font-size: 16px; }
+
+    /* Passport */
+    .passport_head { gap: 32px; margin-bottom: 36px; }
+    .ticket {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      padding: 22px 24px;
+      text-align: left;
+    }
+    .ticket::before,
+    .ticket::after { width: 18px; height: 18px; }
+    .ticket::before { left: -9px; }
+    .ticket::after { right: -9px; }
+    .ticket .ticket_left h4 { font-size: 20px; }
+    .ticket .stub {
+      font-size: 36px;
+      border-left: none;
+      border-top: 1px dashed rgba(146,109,92,0.4);
+      padding-left: 0;
+      padding-top: 14px;
+    }
+
+    .timeline { padding-left: 18px; margin-top: 24px; }
+    .tl_item {
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 20px 12px 20px 18px;
+    }
+    .tl_item::before { top: 24px; }
+    .tl_item:hover { padding-left: 24px; }
+    .tl_item .step { font-size: 28px; }
+    .tl_item h4 { font-size: 19px; }
+    .tl_item p { font-size: 14px; }
+    .tl_item .time { justify-self: start; font-size: 10px; padding: 5px 10px; }
+
+    /* Lounge */
+    .lounge_mosaic { height: 380px; }
+    .lounge_mosaic .glass {
+      right: 4%;
+      bottom: 4%;
+      max-width: 220px;
+      padding: 14px 16px;
+      font-size: 13px;
+    }
+    .lounge_list { margin-top: 20px; }
+    .lounge_list li {
+      grid-template-columns: 30px 1fr;
+      gap: 14px;
+      padding: 18px 4px;
+    }
+    .lounge_list .chip {
+      grid-column: 2;
+      justify-self: start;
+      margin-top: 4px;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+    }
+    .lounge_list .n { font-size: 18px; }
+    .lounge_list h4 { font-size: 18px; }
+    .lounge_list p { font-size: 13px; }
+
+    /* Giveaway */
+    .prize_ticket {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      padding: 32px 24px;
+    }
+    .prize_ticket .divider {
+      height: 1px;
+      width: 100%;
+      background: repeating-linear-gradient(to right, rgba(146,109,92,0.4) 0 6px, transparent 6px 14px);
+    }
+    .prize_ticket::before,
+    .prize_ticket::after { width: 22px; height: 22px; }
+    .prize_ticket::before { left: -11px; }
+    .prize_ticket::after { right: -11px; }
+    .prize_left h3 { font-size: 32px; }
+    .prize_left p { font-size: 14px; }
+    .prize_right .row { padding: 10px 12px; gap: 10px; flex-wrap: wrap; }
+    .prize_right .txt { font-size: 11px; letter-spacing: 1px; }
+    .giveaway p { font-size: 15px; }
+
+    /* Rewards */
+    .rewards_cards {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 36px;
+    }
+    .reward { padding: 28px 24px 26px; }
+    .reward .n { font-size: 24px; }
+    .reward h4 { font-size: 19px; }
+    .reward p { font-size: 13px; }
+
+    /* Vitamin */
+    .vitamin p { font-size: 15px; }
+    .vitamin_phone { padding: 14px 24px; font-size: 11px; }
+
+    /* Reserve */
+    .reserve { padding: 72px 18px; }
+    .reserve_card { padding: 40px 24px 36px; border-radius: var(--radius_md); }
+    .reserve_card h2 { font-size: 34px; }
+    .reserve_card p { font-size: 15px; }
+    .phone_cta {
+      font-size: 20px;
+      padding: 16px 28px;
+      margin-top: 28px;
+      letter-spacing: 0.6px;
+    }
+    .phone_cta .phone_ico { width: 18px; height: 18px; }
+    .phone_sub { font-size: 10px; letter-spacing: 2px; }
+
+    /* Footer */
+    footer { padding: 56px 18px 28px; }
+    .foot_top { grid-template-columns: 1fr; gap: 36px; }
+    .foot_logo img { height: 64px; margin-bottom: 18px; }
+    .foot_bottom {
+      margin-top: 40px;
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 10px;
+      letter-spacing: 1.2px;
+    }
+
+    /* Telehealth tab — make less intrusive on mobile */
+    .telehealth {
+      top: auto;
+      bottom: 16px;
+      right: 16px;
+      transform: none;
+      transform-origin: center;
+      border-radius: var(--radius_pill);
+      padding: 12px 18px;
+      font-size: 10px;
+      letter-spacing: 1.6px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+    }
+  }
+
+  @media (max-width: 380px) {
+    .hero_title { font-size: 38px; }
+    .title { font-size: 28px; }
+    .reserve_card h2 { font-size: 28px; }
+    .phone_cta { font-size: 17px; }
+    .admission_price { font-size: 48px; }
+  }
+
 </style>
 </head>
 <body>
@@ -1003,6 +1309,9 @@
         (231) 252 4474
       </a>
     </div>
+    <button class="nav_toggle" aria-label="Menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
   </div>
 </nav>
 
@@ -1398,7 +1707,25 @@
     }, 5000);
   })();
 
-  // Hero photo rotation
+// Mobile nav toggle
+  (function () {
+    var nav = document.querySelector('.nav');
+    var toggle = document.querySelector('.nav_toggle');
+    var links = document.querySelectorAll('.nav_links a');
+    if (!nav || !toggle) return;
+    toggle.addEventListener('click', function () {
+      var open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    links.forEach(function (l) {
+      l.addEventListener('click', function () {
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+
+    // Hero photo rotation
   (function () {
     var frames = document.querySelectorAll('.hero_photo .frame');
     var idx = 0;
