@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P7JR4PXK');</script>
+<!-- End Google Tag Manager -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The Eternal Glow Event · Eternal Wellness Medical Spa</title>
@@ -888,6 +895,39 @@
     text-align: center;
   }
   .signup_form.submitted .signup_thanks { display: block; }
+  .signup_consent {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 4px;
+  }
+  .signup_consent input[type="checkbox"] {
+    margin-top: 4px;
+    width: auto;
+    height: auto;
+    accent-color: var(--brand_primary);
+    flex-shrink: 0;
+  }
+  .signup_consent label {
+    font-family: 'Karla', sans-serif;
+    font-size: 12px;
+    font-style: italic;
+    line-height: 1.5;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--muted);
+  }
+  .signup_error {
+    grid-column: 1 / -1;
+    display: none;
+    color: var(--terracotta);
+    font-family: 'Karla', sans-serif;
+    font-size: 13px;
+  }
+  .form-success-message {
+    grid-column: 1 / -1;
+  }
 
   .phone_cta {
     display: inline-flex;
@@ -1143,14 +1183,19 @@
       background: rgba(237,233,229,0.98);
       backdrop-filter: saturate(1.8) blur(8px);
       -webkit-backdrop-filter: saturate(1.8) blur(8px);
-      border-top: 1px solid rgba(146,109,92,0.18);
-      border-bottom: 1px solid rgba(146,109,92,0.18);
-      padding: 8px 18px 16px;
+      border-top: 1px solid transparent;
+      border-bottom: 1px solid transparent;
+      padding: 0 18px;
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.35s ease, padding 0.35s ease;
+      transition: max-height 0.35s ease, padding 0.35s ease, border-color 0.35s ease;
     }
-    .nav.open .nav_links { max-height: 480px; padding: 12px 18px 20px; }
+    .nav.open .nav_links {
+      max-height: 480px;
+      padding: 12px 18px 20px;
+      border-top-color: rgba(146,109,92,0.18);
+      border-bottom-color: rgba(146,109,92,0.18);
+    }
     .nav_links li { border-bottom: 1px solid rgba(146,109,92,0.14); }
     .nav_links li:last-child { border-bottom: none; }
     .nav_links a {
@@ -1317,6 +1362,8 @@
     }
     .phone_cta .phone_ico { width: 18px; height: 18px; }
     .phone_sub { font-size: 10px; letter-spacing: 2px; }
+    .signup_form { grid-template-columns: 1fr; }
+    .signup_submit { padding-left: 22px; padding-right: 22px; }
 
     /* Footer */
     footer { padding: 56px 18px 28px; }
@@ -1357,6 +1404,10 @@
 </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P7JR4PXK"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- Promotional ticker -->
 <div class="ticker" aria-label="Promotional offers">
@@ -1705,28 +1756,32 @@
     <h2>Claim your <em>passport</em>.</h2>
     <p>Seats are intimate and limited. Drop your details below and we will add you to the guest list. Your $50 ticket is fully redeemable toward products or a service booking the evening of the event.</p>
 
-    <form class="signup_form" id="signupForm" novalidate>
+    <form class="signup_form staff-benefit-form" novalidate>
       <div class="field">
-        <label for="fn">First Name</label>
-        <input id="fn" name="firstName" type="text" autocomplete="given-name" required />
+        <label for="first_name">First Name</label>
+        <input id="first_name" name="first_name" type="text" autocomplete="given-name" placeholder="First Name" required />
       </div>
       <div class="field">
-        <label for="ln">Last Name</label>
-        <input id="ln" name="lastName" type="text" autocomplete="family-name" required />
+        <label for="last_name">Last Name</label>
+        <input id="last_name" name="last_name" type="text" autocomplete="family-name" placeholder="Last Name" required />
       </div>
       <div class="field">
-        <label for="ph">Phone Number</label>
-        <input id="ph" name="phone" type="tel" autocomplete="tel" placeholder="(231) 252 4474" required />
+        <label for="phone">Phone Number</label>
+        <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="2312524474" required />
       </div>
       <div class="field">
-        <label for="em">Email</label>
-        <input id="em" name="email" type="email" autocomplete="email" required />
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" placeholder="Email" required />
       </div>
-      <button type="submit" class="signup_submit">
+      <div class="signup_consent">
+        <input type="checkbox" id="newsletter" name="newsletter" required />
+        <label for="newsletter">By submitting this form, you agree to receive marketing text messages, alerts, and notifications from Eternal Wellness. Message frequency may vary. Rates may be applied. You can opt out at any time by replying STOP.</label>
+      </div>
+      <div id="form-error" class="signup_error" role="alert" aria-live="polite"></div>
+      <button type="submit" class="signup_submit submit-btn">
         <svg class="phone_ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/><path d="M2 8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4V8z"/></svg>
         Sign Up for the Event
       </button>
-      <div class="signup_thanks" id="signupThanks" role="status" aria-live="polite">Thank you. Your spot is saved. We will be in touch to confirm.</div>
     </form>
 
     <div class="phone_sub">Thursday, May 7 · VIP 5:00 PM · General 6:00 to 8:30 PM</div>
@@ -1855,28 +1910,107 @@
     setInterval(function () { go(1); }, 6000);
   })();
 
-  // Sign-up form handler
+  // ── Form ──
   (function () {
-    var form = document.getElementById('signupForm');
-    if (!form) return;
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
+    const forms = document.querySelectorAll('.staff-benefit-form');
+
+    forms.forEach((form) => {
+      const submitBtn = form.querySelector('.submit-btn');
+      const errEl = form.querySelector('#form-error');
+
+      function showError(msg) {
+        if (!errEl) return;
+        errEl.textContent = msg;
+        errEl.style.display = msg ? 'block' : 'none';
       }
-      // Capture values (here we just flash a thank-you message;
-      // wire this up to your backend / CRM of choice)
-      form.classList.add('submitted');
-      form.querySelectorAll('input').forEach(function (el) {
-        el.setAttribute('disabled', 'disabled');
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        showError('');
+        submitBtn.disabled = true;
+
+        const email = form.querySelector('#email').value?.trim() || '';
+        const phone = form.querySelector('#phone').value?.trim() || '';
+        const first_name = form.querySelector('#first_name').value?.trim() || '';
+        const last_name = form.querySelector('#last_name').value?.trim() || '';
+        const checkbox = form.querySelector('#newsletter')?.checked ? 'on' : '';
+
+        const emailRe = /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/;
+        if (!emailRe.test(email)) {
+          showError('Please enter a valid email address.');
+          submitBtn.disabled = false;
+          return;
+        }
+
+        const phoneRe = /^[0-9]{10}$/;
+        if (!phoneRe.test(phone)) {
+          showError('Please enter a 10-digit US phone number.');
+          submitBtn.disabled = false;
+          return;
+        }
+
+        const fd = new FormData();
+        fd.append('first_name', first_name);
+        fd.append('last_name', last_name);
+        fd.append('phone', `+1${phone}`);
+        fd.append('email', email);
+        fd.append('checkbox', checkbox);
+        fd.append('organization', 'c543dd90-48c9-422e-a949-67d2b791eba7');
+        fd.append('form', '476');
+        fd.append('message', '');
+        fd.append('form_location', window.location.href);
+
+        // Detect ad tracking params from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const trackingMap = {
+          gclid: 'google',
+          wbraid: 'google',
+          gbraid: 'google',
+          fbclid: 'meta',
+          ttclid: 'tiktok',
+        };
+        let trackingParam = '';
+        let adSource = 'other';
+        for (const [param, source] of Object.entries(trackingMap)) {
+          const val = urlParams.get(param);
+          if (val) {
+            trackingParam = val;
+            adSource = source;
+            break;
+          }
+        }
+        fd.append('tracking_param', trackingParam);
+        fd.append('ad_source', adSource);
+
+        try {
+          const res = await fetch(
+            'https://api.aevadigital.com/api/v1/contacts/add_contact_from_form/',
+            {
+              method: 'POST',
+              body: fd,
+            }
+          );
+
+          if (!res.ok) {
+            const txt = await res.text().catch(() => res.statusText);
+            throw new Error(txt || 'Server error');
+          }
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ 'event': 'event-submit' });
+
+          form.style.display = 'none';
+          const thankYou = document.createElement('div');
+          thankYou.className = 'form-success-message';
+          thankYou.style.cssText = 'text-align:center; padding:40px; font-family:var(--font-body);';
+          thankYou.innerHTML = '<h3 style="font-family:var(--font-heading); font-size:24px; color:var(--near-black); margin-bottom:12px;">Thank You!</h3><p style="color:var(--dark-gray); font-size:14px;">Your consultation request has been received. We\'ll be in touch shortly.</p>';
+          form.parentNode.insertBefore(thankYou, form.nextSibling);
+        } catch (err) {
+          console.error(err);
+          showError('Submission failed — please try again.');
+          submitBtn.disabled = false;
+        }
       });
-      var btn = form.querySelector('.signup_submit');
-      if (btn) {
-        btn.setAttribute('disabled', 'disabled');
-        btn.style.opacity = '0.6';
-        btn.style.cursor = 'default';
-      }
     });
   })();
 </script>
